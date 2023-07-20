@@ -2,7 +2,7 @@ const menu = [
   {
     title: "Dashboard",
     link: "dashboard",
-    icon: "bxs-dashboard",
+    icon: "",
   },
   {
     title: "User",
@@ -11,13 +11,8 @@ const menu = [
   {
     title: "Users",
     link: "users",
-    icon: "bx-user",
+    icon: "",
   },
-  // {
-  //   title: "Players",
-  //   link: "players",
-  //   icon: "bxl-play-store",
-  // },
   {
     title: "Tournament",
     hr: true,
@@ -25,22 +20,22 @@ const menu = [
   {
     title: "Games",
     link: "games",
-    icon: "bxs-game",
+    icon: "",
   },
   {
     title: "Tournaments",
     link: "tours",
-    icon: "bxs-dice-5",
+    icon: "",
   },
   {
     title: "Rewards",
     link: "prizes",
-    icon: "bxs-award",
+    icon: "",
   },
   {
     title: "Reports",
     link: "reports",
-    icon: "bxs-report",
+    icon: "",
   },
   {
     title: "Configuration",
@@ -49,7 +44,7 @@ const menu = [
   {
     title: "Configuration",
     link: "config",
-    icon: "bxs-cog",
+    icon: "",
   },
 ];
 

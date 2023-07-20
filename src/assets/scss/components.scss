@@ -1,4 +1,4 @@
-$clr-a: #9e19c7;
+$clr-a: #CF00E1;
 $box_shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
 $font_color: #fff;
 $clr-h: #44055d;
@@ -42,13 +42,15 @@ $clr-h: #44055d;
 .thumbnail {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted #1f032e;
-  border: solid 4px #b81ab8;
-  border-style: double;
   border-radius: 0px;
+  padding: 10px;
   height: 23vh;
+  width: 100%;
+  background-size: 100% 100%;
+  background-image: url('../img/thumbnail-border.png');
 
   img {
+    border-radius: 10px;
     width: 100%;
     height: 100%;
   }
@@ -216,15 +218,14 @@ $clr-h: #44055d;
 .rounded-btn {
   border-radius: 30px;
   border: 1px solid #9E19C7;
-  background: #1D002A;
   box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
-  padding: 10px 20px !important;
-  color: #FFF;
+  padding: 7px 20px !important;
   text-align: center;
-  font-family: 'Montserrat';
-  font-size: 13px;
+  font-family: "Montserrat";
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
+  height: 34px;
   line-height: normal;
 
   &:hover,
@@ -232,6 +233,8 @@ $clr-h: #44055d;
     background: $clr-a;
   }
 }
+
+.square-btn {}
 
 .help-modal {
   .modal-content {

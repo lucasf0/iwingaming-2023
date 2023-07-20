@@ -6,17 +6,22 @@ const mapdata = [
   {
     text: "Tournaments",
     link: "/tournament",
-    class: "",
+    class: "rounded-btn",
   },
   {
     text: "Practice",
     link: "/practice",
-    class: "",
+    class: "rounded-btn",
   },
+  // {
+  //   text: "Practice",
+  //   link: "/submit-game",
+  //   class: "square-btn",
+  // },
   {
     link: "",
     class: "",
-    icon: <i className="bi bi-bell"></i>,
+    icon: <i className="bi bi-bell-fill color-acitve"></i>,
   },
   {
     text: "welcome ",
@@ -50,13 +55,9 @@ const Topnav = ({ page }) => {
                       <Dropdown.Item href="/logout">Log out</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-                ) : ele.icon ? (
-                  <Nav.Link as={Link} to={ele.link} className={ele.class}>
-                    {ele.icon}
-                  </Nav.Link>
                 ) : (
-                  <Nav.Link as={Link} to={ele.link} className="rounded-btn">
-                    {ele.text}
+                  <Nav.Link as={Link} to={ele.link} className={ele.class}>
+                    {ele.icon ? ele.icon : ele.text}
                   </Nav.Link>
                 )}
               </Nav.Item>
