@@ -140,7 +140,7 @@ $aside: 68px;
 
   main {
     position: relative;
-    height: $main;
+    min-height: $main;
     margin-left: $aside;
     margin-right: $aside;
   }
