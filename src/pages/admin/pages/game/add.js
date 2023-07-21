@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { notify } from "../../../../utils/notification";
+import { Notify } from "../../../../utils/notification";
 import { Api, upload } from "../../../../utils/api";
 
 export default function AddGame({ show }) {
@@ -22,9 +22,9 @@ export default function AddGame({ show }) {
 
   const saveGame = (data) => {
     if (image === "") {
-      notify("warning", "Not found Game Image!");
+      Notify("warning", "Not found Game Image!");
     } else if (game === "") {
-      notify("warning", "Not found Game flie!");
+      Notify("warning", "Not found Game flie!");
     } else {
       Api(
         "/admin/addNewGame",
@@ -36,7 +36,7 @@ export default function AddGame({ show }) {
         (res) => {
           const { success } = res;
           if (success) {
-            notify("success", "New Game Created!");
+            Notify("success", "New Game Created!");
           }
         }
       );

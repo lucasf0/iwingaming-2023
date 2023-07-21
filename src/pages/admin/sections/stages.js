@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Api } from "../../../utils/api";
 import { str_stage, str_prize } from "../../../utils/maps";
 import { refresh } from "../../../utils/api";
-import { notify } from "../../../utils/notification";
+import { Notify } from "../../../utils/notification";
 import {
   Form,
   Button,
@@ -51,7 +51,7 @@ export default function Stages({ tourInfo }) {
           : "This is final stage?";
       if (window.confirm(msg)) {
         if (values === 0) {
-          notify("warning", "please select the prizes");
+          Notify("warning", "please select the prizes");
           return;
         }
         saveStage(data);
@@ -66,7 +66,7 @@ export default function Stages({ tourInfo }) {
     Api("/admin/addStage", { ...data, no, prizes }, (res) => {
       const { success, insertId } = res;
       if (success) {
-        notify("success", "New stage have been created");
+        Notify("success", "New stage have been created");
         setStageIds([...stageIds, insertId]);
         console.log(str_prize);
         setPrizes(str_prize);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-// import { notify } from "../../../../utils/notification";
+// import { Notify } from "../../../../utils/notification";
 import { Api, upload } from "../../../../utils/api";
 
 export default function AddPrize({ show }) {

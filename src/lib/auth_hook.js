@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react";
-import { getAuthenticatedUser } from "./auth_vali";
-import { APP_ROUTES } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
+import { Api } from "../utils/api";
 
-export function useUser() {
-  const [user, setUser] = useState(null);
-  const [authenticated, setAutenticated] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    async function getUserDetails() {
-      const { authenticated, user } = await getAuthenticatedUser();
-      if (!authenticated) {
-        navigate(APP_ROUTES.SIGN_IN);
-        return;
-      }
-      setUser(user);
-      setAutenticated(authenticated);
+export const getAuthenticatedUser = (callback) => {
+  Api(
+    "/auth/me",
+    {
+      token: localStorage.getItem("iwin-token"),
+    },
+    (res) => {
+      callback(res);
     }
-    getUserDetails();
-  }, []);
+  );
+};
 
-  return { user, authenticated };
-}
+export const logout = () => {
+  localStorage.removeItem("iwin-token");
+  window.location.href = "/";
+
+  // Api("/auth/logout", null, (res) => {
+  //   const { success } = res;
+  //   if (success) {
+  //   }
+  // });
+};

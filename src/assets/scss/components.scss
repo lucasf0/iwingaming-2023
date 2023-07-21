@@ -5,8 +5,8 @@ $clr-h: #44055d;
 
 .navbar-nav {
   display: flex;
-  font-weight: 700;
   align-items: center;
+  justify-content: center;
 }
 
 .color-acitve {
@@ -37,6 +37,15 @@ $clr-h: #44055d;
     color: $clr-a;
     height: 2px;
   }
+}
+
+.page-title {
+  color: #FFF;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 .thumbnail {
@@ -85,19 +94,19 @@ $clr-h: #44055d;
 }
 
 .page-nav {
-  background-color: #341b45 !important;
   padding: 0px;
+  background-color: #341b45 !important;
 
   .nav-item {
-    height: 42px;
+    height: 35px;
     display: flex;
     align-items: center;
     text-transform: uppercase;
     text-align: center;
-    padding: 0px 10px;
+    padding: 0px;
 
-    a {
-      font-size: 11px !important;
+    a{
+      padding: 0px 15px;
     }
 
     &:hover {
@@ -111,8 +120,7 @@ $clr-h: #44055d;
 }
 
 .searchbox {
-  height: 40px;
-  margin-top: 1px;
+  height: 35px;
   background-color: #341b45;
   border: none;
 }
@@ -142,11 +150,12 @@ $clr-h: #44055d;
 
 .game-list {
   position: relative;
+  min-height: 60vh;
 
   .paginate {
     position: absolute;
-    bottom: -60px;
     text-align: right;
+    bottom: -25px;
 
     li {
       padding: 0px 10px;
@@ -180,16 +189,14 @@ $clr-h: #44055d;
   align-items: center;
   justify-content: center;
   width: 183px;
-  height: 34px;
+  height: 30px;
   border-radius: 30px;
   border: 1px solid #9E19C7;
   background: var(--fff, linear-gradient(95deg, #D900FF 0%, #8500FF 100%));
   box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
   color: #FFF;
   text-align: center;
-  font-family: 'Montserrat';
   font-size: 14px;
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
@@ -207,9 +214,7 @@ $clr-h: #44055d;
   box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
   color: #FFF;
   text-align: center;
-  font-family: 'Montserrat';
-  font-size: 14px;
-  font-style: normal;
+  font-size: 12px;
   font-weight: 700;
   line-height: normal;
   text-transform: uppercase;
@@ -219,14 +224,11 @@ $clr-h: #44055d;
   border-radius: 30px;
   border: 1px solid #9E19C7;
   box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
-  padding: 7px 20px !important;
+  padding: 5px 20px !important;
   text-align: center;
-  font-family: "Montserrat";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  height: 34px;
+  height: 30px;
   line-height: normal;
+  background-color: #1b022c;
 
   &:hover,
   &.active {
@@ -242,7 +244,6 @@ $clr-h: #44055d;
     color: white;
     height: 75vh;
     overflow: auto;
-
 
     &::-webkit-scrollbar {
       width: 0px;

@@ -2,10 +2,9 @@ $clr-a: #9e19c7;
 $font_color: #fff;
 $clr-n: #1f032e;
 $root: 100vh;
-$top_nav: 10vh;
 $main: 80vh;
 $footer: 10vh;
-$aside: 68px;
+$aside: 70px;
 
 #root {
   position: relative;
@@ -38,19 +37,21 @@ $aside: 68px;
   }
 
   .topnav {
-    height: $top_nav;
+    position: relative;
     background-color: $clr-n;
     box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
-    ;
+
+    .nav-item {
+      padding-right: 12px;
+    }
 
     .dropdown {
       .btn {
-        background: #0000;
+        background: transparent !important;
         border: none;
 
         &::after {
           content: none !important;
-          /* or content: ""; */
         }
       }
 
@@ -110,7 +111,7 @@ $aside: 68px;
     ul {
       position: fixed;
       min-height: 100vh;
-      width: $aside;
+      width: 68px;
       border: solid 1px #695872;
       border-bottom: none;
 
@@ -141,17 +142,19 @@ $aside: 68px;
   main {
     position: relative;
     min-height: $main;
-    margin-left: $aside;
-    margin-right: $aside;
+    padding-left: $aside;
+    padding-right: $aside;
   }
 
   .footer {
+    position: relative;
     border-top: 1px solid #695872;
+    padding: 0px $aside;
 
     img,
     iframe {
-      height: calc(10vh - 9px);
-      width: 82%;
+      height: calc(#{$footer} - 9px);
+      width: 100%;
     }
   }
 }

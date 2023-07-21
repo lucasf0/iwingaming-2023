@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { notify } from "../../utils/notification";
+import { Notify } from "../../utils/notification";
 import { Api } from "../../utils/api";
 import { API_URL } from "../../utils/constants";
 
@@ -59,7 +59,7 @@ export default function Referrals() {
     },
     copyLink = () => {
       navigator.clipboard.writeText(aff_link).then(() => {
-        notify("info", "Copied to Clipboard!");
+        Notify("info", "Copied to Clipboard!");
       });
     };
 

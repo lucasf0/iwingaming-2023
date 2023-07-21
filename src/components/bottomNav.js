@@ -59,7 +59,7 @@ const mapdata = [
 function BottomNav() {
   return (
     <Row className="">
-      <Col lg={12}>
+      <Col lg={12} className="">
         <Navbar className="page-nav mb-1" expand="lg">
           <Navbar.Toggle aria-controls="nav-3" />
           <Navbar.Collapse id="nav-3">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../utils/constants";
 import { Api, upload } from "../../utils/api";
-import { notify } from "../../utils/notification";
+import { Notify } from "../../utils/notification";
 import Layout from "../../layout/user";
 
 const str_profile = [
@@ -78,7 +78,7 @@ export default function Profile() {
       if (e.target.value.length > 4) {
         changeinfo(field, e.target.value);
       } else {
-        notify("warning", "Must be longer than 4 characters");
+        Notify("warning", "Must be longer than 4 characters");
       }
     }
   };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Api } from "../utils/api";
-import { notify } from "../utils/notification";
+import { Notify } from "../utils/notification";
 
 export default function StatusBtn({ status, id, table }) {
   const [state, setState] = useState(status);
@@ -9,7 +9,7 @@ export default function StatusBtn({ status, id, table }) {
     Api("/admin/updateStatus", { table, id, val }, (res) => {
       const { success } = res;
       if (success) {
-        notify("info", "Updated!");
+        Notify("info", "Updated!");
         setState(state === 1 ? 0 : 1);
       }
     });

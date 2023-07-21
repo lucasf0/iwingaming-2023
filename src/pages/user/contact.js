@@ -3,7 +3,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Api } from "../../utils/api";
 import Layout from "../../layout/user";
-import { notify } from "../../utils/notification";
+import { Notify } from "../../utils/notification";
 
 function Contact() {
   const { register, handleSubmit } = useForm();
@@ -17,7 +17,7 @@ function Contact() {
       },
       (res) => {
         const { success } = res;
-        if (success) notify("success", "Sent");
+        if (success) Notify("success", "Sent");
       }
     );
   };

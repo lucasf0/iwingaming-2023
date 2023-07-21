@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { notify } from "../utils/notification";
+import { Notify } from "../utils/notification";
 import { Api } from "../utils/api";
 import $ from "jquery";
 
@@ -14,7 +14,7 @@ export default function ActionBtn({ id, table, row }) {
       },
       (res) => {
         $(`#${table}-table #row-${row}`).remove();
-        notify("success", "Deleted");
+        Notify("success", "Deleted");
       }
     );
   };

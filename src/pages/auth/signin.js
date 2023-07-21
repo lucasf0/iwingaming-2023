@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Api } from "../../utils/api";
 import { Row } from "react-bootstrap";
+import { Notify } from "../../utils/notification";
 
 import Layout from "../../layout/auth";
 import Divider from "../../components/divider";
+import { escapeSelector } from "jquery";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -15,9 +17,13 @@ export default function Signin() {
 
   const onSubmit = (data) => {
     Api("/auth/login", data, (res) => {
-      const { accessToken } = res;
-      if (accessToken) navigate("/practice");
-      localStorage.setItem("token", accessToken);
+      const { success, accessToken } = res;
+      if (success) {
+        localStorage.setItem("iwin-token", accessToken);
+        navigate("/practice");
+      } else {
+        Notify("danger", "error");
+      }
     });
   };
 
@@ -26,7 +32,7 @@ export default function Signin() {
       Api("/auth/google-login", { access_token: user.access_token }, (res) => {
         const { success } = res;
 
-        console.log(res)
+        console.log(res);
         if (success) {
           navigate("/practice");
         } else {
@@ -57,20 +63,20 @@ export default function Signin() {
             <Divider />
             <Row className="px-5">
               <input
-                className="mt-3"
+                className="mt-2"
                 type="text"
                 placeholder="Enter your Email or Username"
                 {...register("username", { required: true })}
               />
               <input
-                className="mt-3"
+                className="mt-2"
                 type="password"
                 placeholder="Enter password"
                 {...register("password", { required: true })}
               />
             </Row>
             <button className="rounded-btn mt-3" type="submit">
-              Now Sign in
+              Sign in
             </button>
 
             <Row className="pb-5 pt-3">

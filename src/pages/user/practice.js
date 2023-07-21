@@ -7,7 +7,7 @@ import Pagenav from "../../components/filterNav";
 import BottomNav from "../../components/bottomNav";
 import MenuBar from "../../components/menubar";
 import PaginatedItems from "../../components/paginate";
-import ShowGuide from "../../components/modal";
+import PageTitle from "../../components/pageTitle";
 
 const Practice = () => {
   const [loading, setLoading] = useState(true);
@@ -37,26 +37,15 @@ const Practice = () => {
 
   return (
     <Layout>
-      <div className="d-flex w-100 pt-1">
-        <h5>Practice Lobby</h5>
-        <ShowGuide
-          buttonClass="help-btn mb-2 ms-auto"
-          className="help-modal"
-          buttonText="How to play"
-          modalTitle="How to play"
-          modalBody="some contents here..."
-          closeButtonLabel="Close"
-          understoodButtonLabel="Got it!"
-        />
-      </div>
-      <Row className="">
-        <Col md={9}>
+      <PageTitle title={"Practice Lobby"} />
+      <Row>
+        <Col lg={9}>
           <Pagenav setType={setType} page={"practice"} />
           <Row className="mt-2 game-list">
             {loading ? <h4>Loading...</h4> : <PaginatedItems items={games} />}
           </Row>
         </Col>
-        <Col md={3}>
+        <Col lg={3}>
           <MenuBar />
         </Col>
       </Row>

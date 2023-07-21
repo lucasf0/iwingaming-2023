@@ -8,6 +8,7 @@ import BottomNav from "../../components/bottomNav";
 import MenuBar from "../../components/menubar";
 import PaginatedItems from "../../components/paginate";
 import ShowGuide from "../../components/modal";
+import PageTitle from "../../components/pageTitle";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -37,18 +38,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="d-flex w-100 pt-1">
-        <h5>Tournament Lobby</h5>
-        <ShowGuide
-          buttonClass="help-btn mb-2 ms-auto"
-          className="help-modal"
-          buttonText="How to play"
-          modalTitle="How to play"
-          modalBody="This is the body of my modal."
-          closeButtonLabel="Close"
-          understoodButtonLabel="Got it!"
-        />
-      </div>
+      <PageTitle title={"Tournament Lobby"} />
       <Row className="">
         <Col md={9}>
           <Pagenav setType={setType} page={"tournament"} />

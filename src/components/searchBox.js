@@ -7,7 +7,7 @@ function SearchBox() {
       onChange={(e) => {
         
       }}
-      className="searchbox w-100"
+      className="searchbox"
       placeholder="search"
     />
   );

@@ -26,7 +26,7 @@ function PaginatedItems({ items }) {
   return (
     <>
       {currentItems.map((ele, i) => (
-        <Col md={3} key={i} className="pe-0 mb-2">
+        <Col md={3} key={i} className="mb-2 px-0">
           <div className="thumbnail">
             <Image
               src={`${API_URL}/images/${ele.image}`}
@@ -38,10 +38,17 @@ function PaginatedItems({ items }) {
               className={"mt-2 play-btn"}
               variant="danger"
               onClick={() => {
+                localStorage.setItem(
+                  "selected_game",
+                  JSON.stringify({
+                    url: ele.url,
+                    name: ele.name,
+                  })
+                );
                 navigator("/gameplay");
               }}
             >
-              Play
+              {ele.name}
             </Button>
             <div className="tip">{ele.summary}</div>
           </div>

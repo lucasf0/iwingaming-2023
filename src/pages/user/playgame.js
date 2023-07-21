@@ -1,27 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../layout/user";
 import { Col, Row } from "react-bootstrap";
 import MenuBar from "../../components/menubar";
 import BottomNav from "../../components/bottomNav";
-import ShowGuide from "../../components/modal";
+import PageTitle from "../../components/pageTitle";
 
 export default function Game() {
-  const url = "https://eigix.net/vmh/ugames/TikiMatch3/index.html";
+  const [url, seturl] = useState();
+  const [name, setname] = useState();
+
+  console.log(localStorage.getItem("selected_game"))
+
+  useEffect(() => {
+    const { url, name } = JSON.parse(localStorage.getItem("selected_game"));
+
+    setname(name);
+    seturl(url);
+  }, []);
 
   return (
     <Layout>
-      <div className="d-flex w-100 pt-1">
-        <h5>Practice</h5>
-        <ShowGuide
-          buttonClass="help-btn mb-2 ms-auto"
-          className="help-modal"
-          buttonText="How to play"
-          modalTitle="How to play"
-          modalBody="This is the body of my modal."
-          closeButtonLabel="Close"
-          understoodButtonLabel="Got it!"
-        />
-      </div>
+      <PageTitle title={name} />
       <Row>
         <Col md={9}>
           <iframe
