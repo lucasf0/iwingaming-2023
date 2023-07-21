@@ -9,7 +9,7 @@ export default function Game() {
   const [url, seturl] = useState();
   const [name, setname] = useState();
 
-  console.log(localStorage.getItem("selected_game"))
+  console.log(localStorage.getItem("selected_game"));
 
   useEffect(() => {
     const { url, name } = JSON.parse(localStorage.getItem("selected_game"));
@@ -22,9 +22,9 @@ export default function Game() {
     <Layout>
       <PageTitle title={name} />
       <Row>
-        <Col md={9}>
+        <Col md={9} className="px-1">
           <iframe
-            className="w-100 h-100 p-1"
+            className="w-100 h-100"
             title="gamer"
             width={300}
             height={200}
@@ -33,7 +33,7 @@ export default function Game() {
             src={url}
           />
         </Col>
-        <Col md={3}>
+        <Col md={3} className="px-1">
           <MenuBar />
         </Col>
       </Row>

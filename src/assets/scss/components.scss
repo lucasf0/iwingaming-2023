@@ -1,7 +1,6 @@
 $clr-a: #CF00E1;
-$box_shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
-$font_color: #fff;
 $clr-h: #44055d;
+$font_color: #fff;
 
 .navbar-nav {
   display: flex;
@@ -11,32 +10,6 @@ $clr-h: #44055d;
 
 .color-acitve {
   color: $clr-a;
-}
-
-.divider {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .left {
-    width: 50%;
-    color: $clr-a;
-    height: 2px;
-  }
-
-  .texture {
-    color: $font_color;
-    font-size: 16px;
-    text-transform: uppercase;
-    margin: 0px 10px;
-  }
-
-  .right {
-    width: 50%;
-    color: $clr-a;
-    height: 2px;
-  }
 }
 
 .page-title {
@@ -98,16 +71,12 @@ $clr-h: #44055d;
   background-color: #341b45 !important;
 
   .nav-item {
-    height: 35px;
+    height: 42px;
     display: flex;
     align-items: center;
     text-transform: uppercase;
     text-align: center;
-    padding: 0px;
-
-    a{
-      padding: 0px 15px;
-    }
+    padding: 0px 10px;
 
     &:hover {
       background-color: $clr-h;
@@ -120,9 +89,10 @@ $clr-h: #44055d;
 }
 
 .searchbox {
-  height: 35px;
+  height: 42px;
   background-color: #341b45;
   border: none;
+  font-size: 16px;
 }
 
 .menubar {
@@ -132,7 +102,7 @@ $clr-h: #44055d;
   }
 
   .list-group {
-    height: 37vh;
+    height: 36vh;
     overflow: auto;
     border-radius: 0px;
 
@@ -150,12 +120,9 @@ $clr-h: #44055d;
 
 .game-list {
   position: relative;
-  min-height: 60vh;
+  text-align: center;
 
   .paginate {
-    position: absolute;
-    text-align: right;
-    bottom: -25px;
 
     li {
       padding: 0px 10px;
@@ -182,23 +149,16 @@ $clr-h: #44055d;
   text-transform: uppercase;
 }
 
-// Buttons
-
 .help-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 183px;
   height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 30px;
   border: 1px solid #9E19C7;
   background: var(--fff, linear-gradient(95deg, #D900FF 0%, #8500FF 100%));
   box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
-  color: #FFF;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: normal;
 }
 
 .play-btn {
@@ -206,37 +166,28 @@ $clr-h: #44055d;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 29px;
-  flex-shrink: 0;
+  height: 30px;
   border-radius: 30px;
   border: 1px solid #9E19C7;
   background: var(--fff, linear-gradient(95deg, #D900FF 0%, #8500FF 100%));
   box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
-  color: #FFF;
   text-align: center;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: uppercase;
 }
 
 .rounded-btn {
+  width: 118px;
+  height: 34px;
+  text-align: center;
   border-radius: 30px;
   border: 1px solid #9E19C7;
+  background-color: #1D002A;
   box-shadow: 0px 4px 36px 0px rgba(158, 25, 199, 0.32);
-  padding: 5px 20px !important;
-  text-align: center;
-  height: 30px;
-  line-height: normal;
-  background-color: #1b022c;
 
   &:hover,
   &.active {
     background: $clr-a;
   }
 }
-
-.square-btn {}
 
 .help-modal {
   .modal-content {
@@ -265,7 +216,8 @@ $clr-h: #44055d;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 79px;
+    height: 80px;
+    font-size: 16px;
     filter: drop-shadow(0px 12px 14px rgba(217, 0, 255, 0.22));
     background-repeat: no-repeat;
   }
@@ -278,7 +230,6 @@ $clr-h: #44055d;
   .right {
     background-image: url('../img/bg-right.svg');
     background-position: left;
-
   }
 
   .center {
@@ -290,12 +241,7 @@ $clr-h: #44055d;
 
 .about-us-content {
   padding: 30px;
-  height: 66vh;
   overflow: auto;
   background-color: #1b022c;
   box-shadow: 0px 0px 18px 0px rgba(218, 3, 247, 0.16);
-
-  &::-webkit-scrollbar {
-    width: 0px;
-  }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Image, Nav, Navbar, Dropdown } from "react-bootstrap";
+import { Image, Nav, Navbar, Dropdown, Col } from "react-bootstrap";
 import { logout } from "../lib/auth_hook";
 
 const mapdata = [
@@ -38,7 +38,7 @@ const Topnav = ({ page }) => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="top-nav" />
       <Navbar.Collapse id="top-nav">
-        {page !== "auth" ? (
+        {page !== "auth-page" ? (
           <Nav className="">
             {mapdata.map((ele, i) => (
               <Nav.Item key={i} className="">
@@ -60,7 +60,9 @@ const Topnav = ({ page }) => {
                   </Nav.Link>
                 ) : ele.stutasBar ? (
                   <Nav.Link as={Link} to={ele.link} className={ele.class}>
-                    asd
+                    <div className="card">
+                      <div className="card-body">Some Informations for Tim</div>
+                    </div>
                   </Nav.Link>
                 ) : (
                   <Nav.Link as={Link} to={ele.link} className={ele.class}>

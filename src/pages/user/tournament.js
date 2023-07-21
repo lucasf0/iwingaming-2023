@@ -39,14 +39,20 @@ const Home = () => {
   return (
     <Layout>
       <PageTitle title={"Tournament Lobby"} />
-      <Row className="">
-        <Col md={9}>
-          <Pagenav setType={setType} page={"tournament"} />
+      <Row>
+        <Col lg={9}>
+          <Pagenav setType={setType} />
           <Row className="mt-2 game-list">
-            {loading ? <h4>Loading...</h4> : <PaginatedItems items={tours} />}
+            {loading ? (
+              <h6 className="mt-2">Loading...</h6>
+            ) : tours.length === 0 ? (
+              <h6 className="mt-2">No Tournaments found...</h6>
+            ) : (
+              <PaginatedItems items={tours} />
+            )}
           </Row>
         </Col>
-        <Col md={3}>
+        <Col md={3} className="px-1">
           <MenuBar />
         </Col>
       </Row>

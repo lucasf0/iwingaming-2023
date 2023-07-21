@@ -30,7 +30,6 @@ export default function AboutUs() {
           organizations (NPO's) around the world. We are thrilled to be able to
           bring you, your friends, and fellow game lovers, the chance to win the
           most and biggest prizes per tournament, while playing in a fun and
-          environment, utilizing our unique brand of social games, all at no
           cost to you. There are no entry fees and no costs to you throughout
           any of our tournaments. All of our games are completely legal in most
           US states as well as the rest of the world where online “gaming” is

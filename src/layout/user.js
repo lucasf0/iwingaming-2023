@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/topNav";
-import Sidebar from "../components/sidebar.js";
+import Sidebar from "../components/linksBar.js";
 import Footer from "../components/footer";
 import Layer from "../components/layer.js";
 import { Container } from "react-bootstrap";
@@ -25,10 +25,8 @@ const Layout = ({ children }) => {
     <>
       <Layer />
       <Sidebar />
-      <Navbar />
-      <Container fluid>
-        <main>{children}</main>
-      </Container>
+      <Navbar page={"user-page"} />
+      <main>{children}</main>
       <Footer />
     </>
   );

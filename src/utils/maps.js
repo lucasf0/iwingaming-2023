@@ -1,53 +1,40 @@
-const menu = [
+const adminSideBarMenu = [
   {
     title: "Dashboard",
     link: "dashboard",
-    icon: "",
-  },
-  {
-    title: "User",
-    hr: true,
+    icon: <i className="bi bi-speedometer"></i>,
   },
   {
     title: "Users",
     link: "users",
-    icon: "",
-  },
-  {
-    title: "Tournament",
-    hr: true,
+    icon: <i className="bi bi-people"></i>,
   },
   {
     title: "Games",
     link: "games",
-    icon: "",
+    icon: <i className="bi bi-controller"></i>,
   },
   {
     title: "Tournaments",
     link: "tours",
-    icon: "",
+    icon: <i className="bi bi-trophy"></i>,
   },
   {
     title: "Rewards",
     link: "prizes",
-    icon: "",
+    icon: <i className="bi bi-award"></i>,
   },
   {
     title: "Reports",
     link: "reports",
-    icon: "",
-  },
-  {
-    title: "Configuration",
-    hr: true,
+    icon: <i className="bi bi-envelope"></i>,
   },
   {
     title: "Configuration",
     link: "config",
-    icon: "",
+    icon: <i className="bi bi-sliders"></i>,
   },
 ];
-
 
 const str_stage = [
   {
@@ -107,4 +94,4 @@ const str_prize = [
   { place: 10, advance: false, prizeType: "", value: "" },
 ];
 
-export { menu, str_stage, status, str_prize };
+export { adminSideBarMenu, str_stage, status, str_prize };

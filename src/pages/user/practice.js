@@ -42,10 +42,16 @@ const Practice = () => {
         <Col lg={9}>
           <Pagenav setType={setType} page={"practice"} />
           <Row className="mt-2 game-list">
-            {loading ? <h4>Loading...</h4> : <PaginatedItems items={games} />}
+            {loading ? (
+              <h6 className="mt-2">Loading...</h6>
+            ) : games.length === 0 ? (
+              <h6 className="mt-2">No Games...</h6>
+            ) : (
+              <PaginatedItems items={games} />
+            )}
           </Row>
         </Col>
-        <Col lg={3}>
+        <Col lg={3} className="px-1">
           <MenuBar />
         </Col>
       </Row>

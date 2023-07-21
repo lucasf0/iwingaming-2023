@@ -56,7 +56,7 @@ const str_profile = [
 ];
 
 export default function Profile() {
-  const id = 23;
+  const id = 147;
   const [userInfo, setUserInfo] = useState({});
 
   const uploadImg = async (e) => {

@@ -5,7 +5,13 @@ $font_color: #fff;
 body {
   color: $font_color;
   font-family: 'Montserrat';
+  font-weight: 400;
   font-size: 12px;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    color: #44035b;
+  }
 }
 
 a,
@@ -95,5 +101,4 @@ li {
 }
 
 @import url("./assets/scss/components.scss");
-@import url("./assets/scss/sections.scss");
 @import url("./assets/scss/pages.scss");

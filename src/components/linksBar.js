@@ -48,9 +48,9 @@ const data = {
   ],
 };
 
-export default function Sidebar() {
+export default function LinksBar() {
   return (
-    <aside className="sidebar-container">
+    <aside className="links-bar">
       <ul className="left">
         {data.left.map((ele, i) => (
           <li className={ele.class} key={i}>

@@ -42,7 +42,7 @@ const data = [
 
 export default function MenuBar() {
   return (
-    <div className="menubar mb-1">
+    <div className="menubar">
       <video style={{ width: "100%", height: "30vh" }} controls autoPlay>
         <source src="../assets/movie.mp4" type="video/mp4" />
       </video>

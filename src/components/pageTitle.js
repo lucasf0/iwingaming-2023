@@ -5,10 +5,10 @@ import ShowGuide from "./modal";
 export default function PageTitle({ title }) {
   return (
     <Row>
-      <div className="d-flex w-100 mt-3">
+      <div className="d-flex mt-1">
         <h5 className="page-title">{title}</h5>
         <ShowGuide
-          buttonClass="help-btn mb-2 ms-auto"
+          buttonClass="help-btn ms-auto"
           className="help-modal"
           buttonText="How to play"
           modalTitle="How to play"

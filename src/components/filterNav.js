@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import SearchBox from "./searchBox";
 import { Api } from "../utils/api";
 
-function Pagenav({ setType, page }) {
+function Pagenav({ setType }) {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Pagenav({ setType, page }) {
   }, []);
 
   return (
-    <Row>
+    <Row className="px-0">
       <Col lg={9} className="px-1">
         <Navbar className="page-nav" expand="lg">
           <Navbar.Toggle aria-controls="filter-nav" />
