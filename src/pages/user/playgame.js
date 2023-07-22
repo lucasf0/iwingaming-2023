@@ -8,9 +8,6 @@ import PageTitle from "../../components/pageTitle";
 export default function Game() {
   const [url, seturl] = useState();
   const [name, setname] = useState();
-
-  console.log(localStorage.getItem("selected_game"));
-
   useEffect(() => {
     const { url, name } = JSON.parse(localStorage.getItem("selected_game"));
 

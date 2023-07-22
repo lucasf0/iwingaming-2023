@@ -50,7 +50,7 @@ const Topnav = ({ page }) => {
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                      <Dropdown.Item href="/admin">Dashboard</Dropdown.Item>
+                      <Dropdown.Item href="/admin">Admin page</Dropdown.Item>
                       <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

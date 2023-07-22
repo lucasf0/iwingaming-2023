@@ -3,10 +3,10 @@ import Navbar from "../components/topNav";
 import Sidebar from "../components/linksBar.js";
 import Footer from "../components/footer";
 import Layer from "../components/layer.js";
-import { Container } from "react-bootstrap";
 import { getAuthenticatedUser } from "../lib/auth_hook";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../utils/constants";
+import Cookies from "universal-cookie";
 
 const Layout = ({ children }) => {
   const naviagor = useNavigate();
@@ -18,6 +18,9 @@ const Layout = ({ children }) => {
         naviagor(APP_ROUTES.SIGN_IN);
         return;
       }
+      
+      const cookies = new Cookies();
+      cookies.set("iwin-info", user, { path: "/" });
     });
   }, []);
 

@@ -31,8 +31,6 @@ export default function Signin() {
     onSuccess: async (user) => {
       Api("/auth/google-login", { access_token: user.access_token }, (res) => {
         const { success } = res;
-
-        console.log(res);
         if (success) {
           navigate("/practice");
         } else {

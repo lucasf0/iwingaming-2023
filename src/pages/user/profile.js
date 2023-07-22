@@ -4,7 +4,7 @@ import { Api, upload } from "../../utils/api";
 import { Notify } from "../../utils/notification";
 import Layout from "../../layout/user";
 
-const str_profile = [
+const data = [
   {
     label: "USER NAME",
     className: "form-control",
@@ -56,12 +56,12 @@ const str_profile = [
 ];
 
 export default function Profile() {
-  const id = 147;
+  const id = 1;
   const [userInfo, setUserInfo] = useState({});
 
   const uploadImg = async (e) => {
     upload(e, "image", async (res) => {
-      changeinfo("avatar", res);
+      // changeinfo("avatar", res);
       if (res) {
         Api("/user/getUserInfo", { id }, (res) => {
           const { success, data } = res;
@@ -73,31 +73,31 @@ export default function Profile() {
     });
   };
 
-  const update = async (e, field) => {
-    if (e.keyCode === 13) {
-      if (e.target.value.length > 4) {
-        changeinfo(field, e.target.value);
-      } else {
-        Notify("warning", "Must be longer than 4 characters");
-      }
-    }
-  };
+  // const update = async (e, field) => {
+  //   if (e.keyCode === 13) {
+  //     if (e.target.value.length > 4) {
+  //       changeinfo(field, e.target.value);
+  //     } else {
+  //       Notify("warning", "Must be longer than 4 characters");
+  //     }
+  //   }
+  // };
 
-  const changeinfo = (f, val) => {
-    let id = userInfo.id;
-    Api("/user/updateProfile", { f, val, id }, (res) => {
-      const { success } = res;
+  // const changeinfo = (f, val) => {
+  //   let id = userInfo.id;
+  //   Api("/user/updateProfile", { f, val, id }, (res) => {
+  //     const { success } = res;
 
-      if (success) {
-        Api("/user/getUserInfo", { id }, (res) => {
-          const { success, data } = res;
-          if (success) {
-            setUserInfo(data[0]);
-          }
-        });
-      }
-    });
-  };
+  //     if (success) {
+  //       Api("/user/getUserInfo", { id }, (res) => {
+  //         const { success, data } = res;
+  //         if (success) {
+  //           setUserInfo(data[0]);
+  //         }
+  //       });
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     Api("/user/getUserInfo", { id }, (res) => {
@@ -106,13 +106,13 @@ export default function Profile() {
         setUserInfo(data[0]);
       }
     });
-  });
+  }, []);
 
   return (
     <Layout>
       <div className="row">
         <div className="col-md-12">
-          <div className="card mb-4">
+          <div className="card mb-4 bg-iwin">
             <h5 className="card-header">{userInfo.username}'s Profile</h5>
             <hr className="my-0" />
             <div className="card-body">
@@ -123,7 +123,7 @@ export default function Profile() {
                       src={
                         userInfo.avatar
                           ? `${API_URL}/images/${userInfo.avatar}`
-                          : "../assets/img/avatars/avatar.jpg"
+                          : "../assets/img/select.jpg"
                       }
                       alt="user-avatar"
                       className="d-block rounded mb-3 w-100 uploaded_image"
@@ -147,7 +147,7 @@ export default function Profile() {
                 </div>
                 <div className="col-md-9">
                   <div className="row">
-                    {str_profile.map((ele, i) => (
+                    {data.map((ele, i) => (
                       <div key={i} className="mb-3 col-md-6">
                         <small className="text-light fw-semibold">
                           {ele.label}
@@ -159,7 +159,7 @@ export default function Profile() {
                                 type="text"
                                 className="no-border"
                                 defaultValue={userInfo[ele.name]}
-                                onKeyDown={(e) => update(e, ele.name)}
+                                // onKeyDown={(e) => update(e, ele.name)}
                               />
                               <span
                                 className="no-border"
@@ -177,48 +177,6 @@ export default function Profile() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="card">
-            <h5 className="card-header">Delete Account</h5>
-            <div className="card-body">
-              <div className="mb-3 col-12 mb-0">
-                <div className="alert alert-warning">
-                  <h6 className="alert-heading fw-bold mb-1">
-                    Are you sure you want to delete your account?
-                  </h6>
-                  <p className="mb-0">
-                    Once you delete your account, there is no going back. Please
-                    be certain.
-                  </p>
-                </div>
-              </div>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                <div className="form-check mb-3">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    name="accountActivation"
-                    id="accountActivation"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="accountActivation"
-                  >
-                    I confirm my account deactivation
-                  </label>
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-danger deactivate-account"
-                >
-                  Deactivate Account
-                </button>
-              </form>
             </div>
           </div>
         </div>

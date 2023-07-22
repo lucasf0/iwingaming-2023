@@ -68,7 +68,6 @@ export default function Stages({ tourInfo }) {
       if (success) {
         Notify("success", "New stage have been created");
         setStageIds([...stageIds, insertId]);
-        console.log(str_prize);
         setPrizes(str_prize);
         refresh();
       }

@@ -7,12 +7,18 @@ export default function AboutUs() {
     <Layout>
       <Container>
         <Row className="about-us-title">
+          <Col></Col>
+          <Col></Col>
+
           <Col className="left"></Col>
           <Col className="center">About Us</Col>
           <Col className="right"></Col>
+
+          <Col></Col>
+          <Col></Col>
         </Row>
 
-        <h6 className="m-3 about-us-content">
+        <h6 className="about-us-content">
           Welcome to iWin Gaming...your home for free-play games that offer you
           the opportunity to play for significant prizes. The iWin Gaming Team
           is comprised of highly skilled experts in the fields of gaming,

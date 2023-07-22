@@ -32,7 +32,6 @@ export default function Signup({ invitedBy }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     Api(
       "/auth/register",
       {

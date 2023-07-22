@@ -208,7 +208,6 @@ $font_color: #fff;
 }
 
 .about-us-title {
-  display: flex;
 
   .left,
   .right,
@@ -220,6 +219,7 @@ $font_color: #fff;
     font-size: 16px;
     filter: drop-shadow(0px 12px 14px rgba(217, 0, 255, 0.22));
     background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 
   .left {
@@ -242,6 +242,12 @@ $font_color: #fff;
 .about-us-content {
   padding: 30px;
   overflow: auto;
+  background-color: #1b022c;
+  box-shadow: 0px 0px 18px 0px rgba(218, 3, 247, 0.16);
+}
+
+.bg-iwin {
+  color: white;
   background-color: #1b022c;
   box-shadow: 0px 0px 18px 0px rgba(218, 3, 247, 0.16);
 }
