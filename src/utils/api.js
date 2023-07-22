@@ -42,7 +42,7 @@ const Api = (url, data, callback) => {
 };
 
 function refresh() {
-  $(".uploaded_image").attr("src", "../assets/img/backgrounds/Mark_001.jpg");
+  // $(".uploaded_image").attr("src", "../assets/img/select.jpg");
   $('input:not([type="hidden"], [type="submit"], [type="reset"])').each(
     function () {
       const $el = $(this);

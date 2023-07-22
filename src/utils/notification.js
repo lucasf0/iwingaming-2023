@@ -13,7 +13,7 @@ export const Notify = (type, message) => {
       break;
     case "error":
       NotificationManager.error(message, "Error", 5000, () => {
-        alert("callback");
+        
       });
       break;
     default:

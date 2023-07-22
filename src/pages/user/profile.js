@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { API_URL } from "../../utils/constants";
 import { Api, upload } from "../../utils/api";
 import { Notify } from "../../utils/notification";
+import { Row, Col } from "react-bootstrap";
+import Cookies from "universal-cookie";
 import Layout from "../../layout/user";
 
 const data = [
@@ -56,104 +58,90 @@ const data = [
 ];
 
 export default function Profile() {
-  const id = 1;
-  const [userInfo, setUserInfo] = useState({});
+  const cookies = new Cookies();
+  const userInfo = cookies.get("iwin-info");
 
   const uploadImg = async (e) => {
     upload(e, "image", async (res) => {
-      // changeinfo("avatar", res);
-      if (res) {
+      let table = "users";
+      let field = "avatar";
+      Api(
+        "/admin/updateRow",
+        { table, id: userInfo.id, field, val: res },
+        (res) => {
+          const { success } = res;
+          if (success) {
+            Notify("info", "Updated!");
+          }
+        }
+      );
+    });
+  };
+
+  const update = async (e, field) => {
+    if (e.keyCode === 13) {
+      if (e.target.value.length > 4) {
+        changeinfo(field, e.target.value);
+      } else {
+        Notify("warning", "Must be longer than 4 characters");
+      }
+    }
+  };
+
+  const changeinfo = (f, val) => {
+    let id = userInfo.id;
+    Api("/user/updateProfile", { f, val, id }, (res) => {
+      const { success } = res;
+
+      if (success) {
         Api("/user/getUserInfo", { id }, (res) => {
           const { success, data } = res;
           if (success) {
-            setUserInfo(data[0]);
           }
         });
       }
     });
   };
 
-  // const update = async (e, field) => {
-  //   if (e.keyCode === 13) {
-  //     if (e.target.value.length > 4) {
-  //       changeinfo(field, e.target.value);
-  //     } else {
-  //       Notify("warning", "Must be longer than 4 characters");
-  //     }
-  //   }
-  // };
-
-  // const changeinfo = (f, val) => {
-  //   let id = userInfo.id;
-  //   Api("/user/updateProfile", { f, val, id }, (res) => {
-  //     const { success } = res;
-
-  //     if (success) {
-  //       Api("/user/getUserInfo", { id }, (res) => {
-  //         const { success, data } = res;
-  //         if (success) {
-  //           setUserInfo(data[0]);
-  //         }
-  //       });
-  //     }
-  //   });
-  // };
-
-  useEffect(() => {
-    Api("/user/getUserInfo", { id }, (res) => {
-      const { success, data } = res;
-      if (success) {
-        setUserInfo(data[0]);
-      }
-    });
-  }, []);
-
   return (
     <Layout>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card mb-4 bg-iwin">
-            <h5 className="card-header">{userInfo.username}'s Profile</h5>
+      <Row className="row mt-5 mb-5">
+        <Col md={12}>
+          <div className="card bg-iwin">
+            <h5 className="card-header p-3">
+              <span className="text-uppercase">{userInfo.username}</span>'s
+              Profile
+            </h5>
             <hr className="my-0" />
             <div className="card-body">
-              <div className="row mb-3">
-                <div className="col-md-3">
-                  <div className="">
-                    <img
-                      src={
-                        userInfo.avatar
-                          ? `${API_URL}/images/${userInfo.avatar}`
-                          : "../assets/img/select.jpg"
-                      }
-                      alt="user-avatar"
-                      className="d-block rounded mb-3 w-100 uploaded_image"
+              <Row className="row mb-3">
+                <Col md={3}>
+                  <img
+                    src={
+                      userInfo.avatar !== ""
+                        ? `${API_URL}/images/${userInfo.avatar}`
+                        : "../assets/img/icons/avatar.png"
+                    }
+                    alt="user-avatar"
+                    className="d-block rounded mb-3 w-100 uploaded_image"
+                  />
+                  <label className="rounded-btn mb-4 w-100">
+                    <span className="d-none d-sm-block">Upload New Avatar</span>
+                    <input
+                      type="file"
+                      onChange={(e) => uploadImg(e)}
+                      accept="image/png, image/jpeg"
+                      hidden
                     />
-                    <div className="">
-                      <label className="btn btn-primary mb-4 w-100">
-                        <span className="d-none d-sm-block">
-                          Upload New Avatar
-                        </span>
-                        <i className="bx bx-upload d-block d-sm-none"></i>
-                        <input
-                          type="file"
-                          onChange={(e) => uploadImg(e)}
-                          className="account-file-input"
-                          accept="image/png, image/jpeg"
-                          hidden
-                        />
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-9">
-                  <div className="row">
-                    {data.map((ele, i) => (
-                      <div key={i} className="mb-3 col-md-6">
-                        <small className="text-light fw-semibold">
-                          {ele.label}
-                        </small>
-                        <div>
-                          {ele.editable ? (
+                  </label>
+                </Col>
+                <Col md={9} className="row">
+                  {data.map((ele, i) => (
+                    <Col key={i} md={6}>
+                      <small className="text-light fw-semibold">
+                        {ele.label}
+                      </small>
+                      {/* {ele.editable ? (
                             <div className="input-group input-group-merge">
                               <input
                                 type="text"
@@ -170,17 +158,16 @@ export default function Profile() {
                             </div>
                           ) : (
                             <p>{userInfo[ele.name]}</p>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                          )} */}
+                      <p>{userInfo[ele.name]}</p>
+                    </Col>
+                  ))}
+                </Col>
+              </Row>
             </div>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </Layout>
   );
 }

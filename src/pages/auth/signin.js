@@ -9,7 +9,6 @@ import { Notify } from "../../utils/notification";
 
 import Layout from "../../layout/auth";
 import Divider from "../../components/divider";
-import { escapeSelector } from "jquery";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ export default function Signin() {
         localStorage.setItem("iwin-token", accessToken);
         navigate("/practice");
       } else {
-        Notify("danger", "error");
+        Notify("warning", "Username or Password is not correct");
       }
     });
   };
@@ -59,7 +58,7 @@ export default function Signin() {
               </Link>
             </Row>
             <Divider />
-            <Row className="px-5">
+            <Row className="px-5 text-center">
               <input
                 className="mt-2"
                 type="text"
@@ -72,10 +71,10 @@ export default function Signin() {
                 placeholder="Enter password"
                 {...register("password", { required: true })}
               />
+              <button className="rounded-btn mt-3" type="submit">
+                Sign in
+              </button>
             </Row>
-            <button className="rounded-btn mt-3" type="submit">
-              Sign in
-            </button>
 
             <Row className="pb-5 pt-3">
               <Link to="/signup">

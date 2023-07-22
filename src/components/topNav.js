@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Image, Nav, Navbar, Dropdown, Col } from "react-bootstrap";
+import { Image, Nav, Navbar, Dropdown } from "react-bootstrap";
 import { logout } from "../lib/auth_hook";
+import { API_URL } from "../utils/constants";
+import Cookies from "universal-cookie";
 
 const mapdata = [
   {
@@ -31,6 +33,9 @@ const mapdata = [
 ];
 
 const Topnav = ({ page }) => {
+  const cookies = new Cookies();
+  const userInfo = cookies.get("iwin-info");
+
   return (
     <Navbar expand="md" className="topnav">
       <Navbar.Brand className="px-5" as={Link} to="/">
@@ -45,8 +50,14 @@ const Topnav = ({ page }) => {
                 {ele.avatar ? (
                   <Dropdown>
                     <Dropdown.Toggle>
-                      {ele.text} <span className="color-acitve">TIM</span>
-                      <Image src={ele.avatar} />
+                      {ele.text}{" "}
+                      <span className="color-acitve text-uppercase">
+                        {userInfo.username}
+                      </span>
+                      <Image
+                        src={`${API_URL}/images/${userInfo.avatar}`}
+                        className="topnav-avatar"
+                      />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item href="/profile">Profile</Dropdown.Item>

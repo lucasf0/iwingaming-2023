@@ -3,8 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Api } from "../../utils/api";
-import Layout from "../../layout/user";
-import { Row } from 'react-bootstrap'
+import { Row } from "react-bootstrap";
+import Layout from "../../layout/auth";
 
 const months = [
   "January",

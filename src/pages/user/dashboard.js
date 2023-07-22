@@ -2,73 +2,77 @@ import React, { useEffect, useState } from "react";
 import { Notify } from "../../utils/notification";
 import { Api } from "../../utils/api";
 import { API_URL } from "../../utils/constants";
+import Cookies from "universal-cookie";
 import Layout from "../../layout/user";
+import { Col, Row } from "react-bootstrap";
+import ShowGuide from "../../components/modal";
 
 function Dashboard() {
-  // const { username, aff_link, affiliate, sup_aff, sub_aff, avatar } =
-  //   cookies.get("iwin-info");
-  // const [players, setPlayers] = useState([]);
-  // const [affShare, setAffShare] = useState({});
-  // const [loading, setLoading] = useState(true);
+  const cookies = new Cookies();
+  const userInfo = cookies.get("iwin-info");
+  const { username, aff_link, affiliate, sup_aff, sub_aff, avatar } = userInfo;
+
+  const [players, setPlayers] = useState([]);
+  const [affShare, setAffShare] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    Api(
+      "/user/getPlayers",
+      {
+        username,
+      },
+      (res) => {
+        const { success, data } = res;
+        if (success) {
+          setLoading(false);
+          setPlayers(data);
+        }
+      }
+    );
 
-    // Api(
-    //   "/user/getPlayers",
-    //   {
-    //     username,
-    //   },
-    //   (res) => {
-    //     const { success, data } = res;
-    //     if (success) {
-    //       setLoading(false);
-    //       setPlayers(data);
-    //     }
-    //   }
-    // );
-
-    // Api("/user/getAffShare", null, (res) => {
-    //   const { success, data } = res;
-    //   if (success) setAffShare(data[0]);
-    // });
+    Api("/user/getAffShare", null, (res) => {
+      const { success, data } = res;
+      if (success) setAffShare(data[0]);
+    });
   }, []);
 
-  // const spent = 1000,
-  //   share =
-  //     affiliate === ""
-  //       ? affShare.aff_shr
-  //       : sup_aff === ""
-  //       ? affShare.sup_shr
-  //       : sub_aff === ""
-  //       ? affShare.sub_shr
-  //       : 0,
-  //   level = affiliate === "" ? 1 : sup_aff === "" ? 2 : sub_aff === "" ? 3 : 0,
-  //   pNum = players.filter((ele) => ele.affiliate === username).length,
-  //   supPNum = players.filter((ele) => ele.sup_aff === username).length,
-  //   subPNum = players.filter((ele) => ele.sub_aff === username).length,
-  //   getShare = (p) => {
-  //     const shared =
-  //       p.affiliate === username
-  //         ? share
-  //         : p.sup_aff === username
-  //         ? affShare.aff_shr - affShare.sup_shr
-  //         : p.sub_aff === username
-  //         ? affShare.sup_shr - affShare.sub_shr
-  //         : 0;
+  const spent = 1000,
+    share =
+      affiliate === ""
+        ? affShare.aff_shr
+        : sup_aff === ""
+        ? affShare.sup_shr
+        : sub_aff === ""
+        ? affShare.sub_shr
+        : 0,
+    level = affiliate === "" ? 1 : sup_aff === "" ? 2 : sub_aff === "" ? 3 : 0,
+    pNum = players.filter((ele) => ele.affiliate === username).length,
+    supPNum = players.filter((ele) => ele.sup_aff === username).length,
+    subPNum = players.filter((ele) => ele.sub_aff === username).length,
+    getShare = (p) => {
+      const shared =
+        p.affiliate === username
+          ? share
+          : p.sup_aff === username
+          ? affShare.aff_shr - affShare.sup_shr
+          : p.sub_aff === username
+          ? affShare.sup_shr - affShare.sub_shr
+          : 0;
 
-  //     return shared;
-  //   },
-  //   copyLink = () => {
-  //     navigator.clipboard.writeText(aff_link).then(() => {
-  //       Notify("info", "Copied to Clipboard!");
-  //     });
-  //   };
+      return shared;
+    },
+    copyLink = () => {
+      navigator.clipboard.writeText(aff_link).then(() => {
+        Notify("info", "Copied to Clipboard!");
+      });
+    };
 
   return (
     <Layout>
-      {/* <div className="row mb-4">
-        <div className="col-md-4 mb-md-0 mb-4">
-          <div className="card mb-4">
+      <Row className="mt-5 mb-5">
+        <Col md={4} className="mb-md-0 mb-4">
+          <div className="card mb-4 bg-iwin">
             <h5 className="card-header">Your Infos</h5>
             <div className="card-body">
               <div className="d-flex align-items-start align-items-sm-center gap-4">
@@ -76,23 +80,21 @@ function Dashboard() {
                   src={
                     avatar
                       ? `${API_URL}/images/${avatar}`
-                      : "../assets/img/avatars/avatar.jpg"
+                      : "../assets/img/icons/trophies-icon-1.pngavatar.png"
                   }
                   alt="not found"
                   className="d-block rounded"
                   height="100"
                   width="100"
                 />
-                <div className="nowrap">
+                <div>
                   <button
-                    className="btn btn-primary me-2 mb-4 nowrap"
+                    className="rounded-btn me-2 mb-4 w-100 px-4"
                     onClick={() => copyLink()}
                   >
                     {aff_link}
                   </button>
-                  <p className="text-muted mb-0 nowrap">
-                    Click button to copy link.
-                  </p>
+                  <p className="text-light mb-0 ">Click button to copy link.</p>
                 </div>
               </div>
             </div>
@@ -104,7 +106,7 @@ function Dashboard() {
                 <li className="d-flex mb-4 pb-1">
                   <div className="avatar flex-shrink-0 me-3">
                     <img
-                      src="../assets/img/icons/unicons/chart.png"
+                      src="../assets/img/icons/trophies-icon-1.png"
                       alt="User"
                       className="rounded"
                     />
@@ -113,7 +115,7 @@ function Dashboard() {
                     <div className="me-2">
                       <h6 className="mb-0">Your Affiliate Level</h6>
                     </div>
-                    <div className="user-progress d-flex align-items-center gap-1">
+                    <div className="d-flex align-items-center gap-1">
                       <h6 className="mb-0">{level} </h6>
                       <span className="text-muted">({share + "%"})</span>
                     </div>
@@ -122,7 +124,7 @@ function Dashboard() {
                 <li className="d-flex mb-4 pb-1">
                   <div className="avatar flex-shrink-0 me-3">
                     <img
-                      src="../assets/img/icons/unicons/wallet.png"
+                      src="../assets/img/icons/trophies-icon-2.png"
                       alt="User"
                       className="rounded"
                     />
@@ -131,7 +133,7 @@ function Dashboard() {
                     <div className="me-2">
                       <h6 className="mb-0">Your Affiliate</h6>
                     </div>
-                    <div className="user-progress d-flex align-items-center gap-1">
+                    <div className="d-flex align-items-center gap-1">
                       <h6 className="mb-0">{affiliate ? affiliate : "None"}</h6>
                       <span className="text-muted"></span>
                     </div>
@@ -141,7 +143,7 @@ function Dashboard() {
                 <li className="d-flex mb-4 pb-1">
                   <div className="avatar flex-shrink-0 me-3">
                     <img
-                      src="../assets/img/icons/unicons/cc-success.png"
+                      src="../assets/img/icons/trophies-icon-3.png"
                       alt="User"
                       className="rounded"
                     />
@@ -150,7 +152,7 @@ function Dashboard() {
                     <div className="me-2">
                       <h6 className="mb-0">Your Players</h6>
                     </div>
-                    <div className="user-progress d-flex align-items-center gap-1">
+                    <div className="d-flex align-items-center gap-1">
                       <h6 className="mb-0">{pNum}</h6>
                       <span className="text-muted"></span>
                     </div>
@@ -159,7 +161,7 @@ function Dashboard() {
                 <li className="d-flex mb-4 pb-1">
                   <div className="avatar flex-shrink-0 me-3">
                     <img
-                      src="../assets/img/icons/unicons/cc-primary.png"
+                      src="../assets/img/icons/trophies-icon-4.png"
                       alt="User"
                       className="rounded"
                     />
@@ -168,7 +170,7 @@ function Dashboard() {
                     <div className="me-2">
                       <h6 className="mb-0">Your Super Players</h6>
                     </div>
-                    <div className="user-progress d-flex align-items-center gap-1">
+                    <div className="d-flex align-items-center gap-1">
                       <h6 className="mb-0">{supPNum}</h6>
                       <span className="text-muted"></span>
                     </div>
@@ -177,7 +179,7 @@ function Dashboard() {
                 <li className="d-flex">
                   <div className="avatar flex-shrink-0 me-3">
                     <img
-                      src="../assets/img/icons/unicons/cc-warning.png"
+                      src="../assets/img/icons/trophies-icon-1.png"
                       alt="User"
                       className="rounded"
                     />
@@ -186,7 +188,7 @@ function Dashboard() {
                     <div className="me-2">
                       <h6 className="mb-0">Your Sub Players</h6>
                     </div>
-                    <div className="user-progress d-flex align-items-center gap-1">
+                    <div className="d-flex align-items-center gap-1">
                       <h6 className="mb-0">{subPNum}</h6>
                       <span className="text-muted"></span>
                     </div>
@@ -195,23 +197,24 @@ function Dashboard() {
               </ul>
             </div>
           </div>
-        </div>
-        <div className="col-md-8 mb-md-0 mb-4">
-          <div className="card">
-            <div className="card-header">
+        </Col>
+        <Col md={8} className="mb-md-0 mb-4">
+          <div className="card bg-iwin">
+            <div className="card-header mt-4">
               <div style={{ float: "right" }}>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#inviteModal"
-                >
-                  Invite People
-                </button>
+                <ShowGuide
+                  buttonClass="rounded-btn px-4 w-100"
+                  className="help-modal"
+                  buttonText="Invite person"
+                  modalTitle="Invite person"
+                  modalBody="some contents here..."
+                  closeButtonLabel="Close"
+                  understoodButtonLabel="Got it!"
+                />
               </div>
               <h5>Total Players: {players.length}</h5>
             </div>
-            <div className="table-responsive text-nowrap">
+            <div className="table-responsive text-">
               <table className="table">
                 <thead className="table-dark">
                   <tr>
@@ -322,8 +325,8 @@ function Dashboard() {
               </table>
             </div>
           </div>
-        </div>
-      </div> */}
+        </Col>
+      </Row>
     </Layout>
   );
 }

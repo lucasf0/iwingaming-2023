@@ -44,7 +44,7 @@ export default function AddPrize({ show }) {
             <div className="row">
               <div className="mb-3 col-md-4">
                 <img
-                  src="../assets/img/backgrounds/Mark_001.jpg"
+                  src="../assets/img/select.jpg"
                   alt="user-avatar"
                   className="d-block rounded mb-3 w-100 uploaded_image"
                 />
