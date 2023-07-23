@@ -58,7 +58,10 @@ export default function Signin() {
               </Link>
             </Row>
             <Divider />
-            <Row className="px-5 text-center">
+            <Row
+              className="px-5"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <input
                 className="mt-2"
                 type="text"
